@@ -1,2 +1,3 @@
-# spring-boot-sample
-Sample SpringBoot application.
+# 概要
+
+SpringBootアプリケーションのサンプル
