@@ -1,5 +1,8 @@
 package com.example.sample.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,10 +11,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.sample.entity.Hello;
 import com.example.sample.form.IndexForm;
+import com.example.sample.repository.HelloCrudRepository;
 
 @Controller
 public class SampleController {
+    @Autowired
+    HelloCrudRepository repository;
+
     @ModelAttribute
     public IndexForm setUpForm() {
         return new IndexForm();
@@ -27,7 +35,15 @@ public class SampleController {
         if (bindingResult.hasErrors()) {
             return "index";
         }
-        return "hello";
+
+        Optional<Hello> word = repository.findById(1);
+        if(word.isPresent()) {
+            String hello = word.get().getWord();
+            model.addAttribute("hello", hello);
+            return "hello";
+        }
+
+        return "err";
     }
     
 }
