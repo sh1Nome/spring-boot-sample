@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <title>hello.html</title>
+</head>
+<body>
+    <h1>hello.html</h1>
+    <p th:text="|${indexForm.name}さん|"></p>
+    <p th:text="|${hello}|"></p>
+    <form th:action="@{/index}" method="get">
+        <input type="submit" value="入力画面へ戻る">
+    </form>
+</body>
+</html>

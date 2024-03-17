@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <title>index.html</title>
+</head>
+<body>
+    <h1>index.html</h1>
+    <form th:action="@{/hello}" method="post" th:object="${indexForm}">
+        <ul th:if="${#fields.hasErrors('*')}">
+            <li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+        <ul>
+            <li>
+                <label for="name">名前：</label>
+                <input type="text" th:field="*{name}">
+            </li>
+            <li>
+                <input type="submit" value="MySQL接続テスト">
+            </li>
+        </ul>
+    </form>
+</body>
+</html>
