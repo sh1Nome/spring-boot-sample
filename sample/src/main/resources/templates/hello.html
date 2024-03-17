@@ -7,6 +7,9 @@
     <title>hello.html</title>
 </head>
 <body>
-    <h2 th:text="|${indexForm.name}|"></h2>
+    <p th:text="|${indexForm.name}さん|"></p>
+    <form th:action="@{/index}" method="get">
+        <input type="submit" value="入力画面へ戻る">
+    </form>
 </body>
 </html>
