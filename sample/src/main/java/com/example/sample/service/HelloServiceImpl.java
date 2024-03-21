@@ -1,39 +1,44 @@
 package com.example.sample.service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.example.sample.entity.Hello;
 import com.example.sample.repository.HelloCrudRepository;
 
+@RequestScope
 @Service
 public class HelloServiceImpl implements HelloService {
 
+    private Optional<Hello> entitys = null;
+
     @Autowired
-    HelloCrudRepository repository;
+    private HelloCrudRepository repository;
 
     String dispatch = null;
 
-    @Override
     public Optional<Hello> findById(Integer id) {
-        return repository.findById(id);
+        if(Objects.isNull(entitys)) {
+            entitys = repository.findById(id);
+        }
+        return entitys;
     }
 
     @Override
     public void modelAddAttribute(Integer id, Model model) {
-        Optional<Hello> entitys = this.findById(id);
-        entitys.ifPresent((entity) -> {
+        this.findById(id).ifPresent((entity) -> {
             model.addAttribute("hello", entity.getWord());
         });
     }
 
     @Override
     public String getDispatch(Integer id) {
-        Optional<Hello> entitys = this.findById(id);
-        entitys.ifPresentOrElse((entity) -> {
+        this.findById(id).ifPresentOrElse((entity) -> {
             dispatch = "hello";
         }, () -> {
             dispatch = "err";
