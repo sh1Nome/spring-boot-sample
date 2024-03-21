@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.sample.form.IndexForm;
 
 @Controller
-public class SampleController {
+public class IndexController {
 
     @ModelAttribute
     public IndexForm setUpForm() {
