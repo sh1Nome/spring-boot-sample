@@ -9,27 +9,36 @@ import org.springframework.ui.Model;
 import com.example.sample.entity.Hello;
 import com.example.sample.repository.HelloCrudRepository;
 
-import lombok.Data;
-
-@Data
 @Service
 public class HelloServiceImpl implements HelloService {
-
-    Integer id = null;
-
-    Model model = null;
 
     @Autowired
     HelloCrudRepository repository;
 
-    public Optional<Hello> findById() {
-        return repository.findById(this.id);
+    String dispatch = null;
+
+    @Override
+    public Optional<Hello> findById(Integer id) {
+        return repository.findById(id);
     }
 
-    public void AddAttribute() {
-        Optional<Hello> entitys = this.findById();
-        entitys.ifPresent((e) -> {
-            this.model.addAttribute("hello", entitys.get().getWord());
+    @Override
+    public void modelAddAttribute(Integer id, Model model) {
+        Optional<Hello> entitys = this.findById(id);
+        entitys.ifPresent((entity) -> {
+            model.addAttribute("hello", entity.getWord());
         });
     }
+
+    @Override
+    public String getDispatch(Integer id) {
+        Optional<Hello> entitys = this.findById(id);
+        entitys.ifPresentOrElse((entity) -> {
+            dispatch = "hello";
+        }, () -> {
+            dispatch = "err";
+        });
+        return dispatch;
+    }
+
 }

@@ -1,7 +1,5 @@
 package com.example.sample.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,15 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.sample.entity.Hello;
 import com.example.sample.form.IndexForm;
-import com.example.sample.repository.HelloCrudRepository;
+import com.example.sample.service.HelloService;
 
 @Controller
 public class HelloController {
 
     @Autowired
-    HelloCrudRepository repository;
+    HelloService service;
 
     @ModelAttribute
     public IndexForm setUpForm() {
@@ -32,14 +29,8 @@ public class HelloController {
             return "index";
         }
 
-        Optional<Hello> word = repository.findById(1);
-        if(word.isPresent()) {
-            String hello = word.get().getWord();
-            model.addAttribute("hello", hello);
-            return "hello";
-        }
-
-        return "err";
+        service.modelAddAttribute(1, model);
+        return service.getDispatch(1);
     }
 
 }
