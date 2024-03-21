@@ -31,5 +31,7 @@ public class HelloServiceImpl implements HelloService {
         });
     }
 
-    public void addAttribute()
+    public void addAttribute(Optional<Hello> entitys) {
+        this.model.addAttribute("hello", entitys.get().getWord());
+    }
 }
