@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PeginationApplication<pegination>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.pegination.PeginationApplication",
+            "projectName": "pegination",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

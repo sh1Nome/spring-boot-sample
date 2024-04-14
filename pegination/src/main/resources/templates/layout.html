@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a th:href="@{/index}">index</a></li>
+        <li><a th:href="@{/server_side}">server_side</a></li>
+        <li><a th:href="@{/spring_pageable}">spring_pageable</a></li>
+        <li><a th:href="@{/front_end}">front_end</a></li>
+        <li><a th:href="@{/vue_js}">vue_js</a></li>
+    </ul>
+    <div layout:fragment="content"></div>
+</body>
+</html>
