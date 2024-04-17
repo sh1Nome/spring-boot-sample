@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ServerSideForm {
 
-    private Integer currentIndex;
+    private Integer startIndex;
+
+    private Integer endIndex;
 
 }

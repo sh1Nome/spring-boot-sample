@@ -13,7 +13,8 @@
         <p>これはserver_side.htmlです</p>
         <p>一覧</p>
         <form th:action="@{/server_side}" method="get" th:object="${serverSideForm}">
-            <input type="hidden" th:field="*{currentIndex}"/>
+            <input type="hidden" th:field="*{startIndex}"/>
+            <input type="hidden" th:field="*{endIndex}"/>
             <button type="submit" name="prev">&lt;</button>
             <button type="submit" name="next">&gt;</button>
         </form>

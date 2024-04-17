@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 @Component
-@ConfigurationProperties(prefix = "pegination")
+@ConfigurationProperties(prefix = "pagination")
 @Data
-public class PeginationProperties {
+public class PaginationProperties {
 
     private Integer size;
 
