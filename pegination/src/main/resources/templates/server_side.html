@@ -11,6 +11,22 @@
 <body>
     <div layout:fragment="content">
         <p>これはserver_side.htmlです</p>
+        <p>一覧</p>
+        <form th:action="@{/server_side}" method="get" th:object="${serverSideForm}">
+            <input type="hidden" th:field="*{currentIndex}"/>
+            <button type="submit" name="prev">&lt;</button>
+            <button type="submit" name="next">&gt;</button>
+        </form>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>fuga</th>
+            </tr>
+            <tr th:each="record: ${displayRecordList}">
+                <td th:text="${record.id}"></td>
+                <td th:text="${record.fuga}"></td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
