@@ -2,7 +2,6 @@ package com.example.pegination.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,11 @@ import com.example.pegination.service.ServerSideService;
 @Controller
 public class ServerSideController {
 
-    @Autowired
-    ServerSideService serverSideService;
+    private final ServerSideService serverSideService;
+
+    public ServerSideController(ServerSideService serverSideService) {
+        this.serverSideService = serverSideService;
+    }
 
     @ModelAttribute
     public ServerSideForm setUpForm() {

@@ -14,11 +14,14 @@ import com.example.pegination.repository.HogeRepository;
 @Service
 public class ServerSideServiceImpl implements ServerSideService {
 
-    @Autowired
-    PaginationProperties peginationProperties;
+    private final PaginationProperties peginationProperties;
 
-    @Autowired
-    HogeRepository repository;
+    private final HogeRepository repository;
+
+    public ServerSideServiceImpl(PaginationProperties peginationProperties, HogeRepository repository) {
+        this.peginationProperties = peginationProperties;
+        this.repository = repository;
+    }
 
     @Override
     public List<Hoge> findAllList() {
